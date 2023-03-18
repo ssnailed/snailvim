@@ -1,0 +1,8 @@
+require('impatient')
+require('config.options')
+require('funcs').bootstrap()
+require('plugins')
+require('config.autocmds').setup()
+require('config.filetypes').setup()
+require('config.icons').setup()
+require('config.keymaps').map('general')
