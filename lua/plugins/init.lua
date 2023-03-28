@@ -8,6 +8,11 @@ local plugins = {
     },
     { "nvim-lua/plenary.nvim" },
     { "lewis6991/impatient.nvim" },
+    { "brenoprata10/nvim-highlight-colors",
+        config = function()
+            require('plugins.highlight-colors')
+        end,
+    },
     {
         "lervag/vimtex",
         setup = function()
@@ -185,11 +190,11 @@ local plugins = {
             require('plugins.luasnip')
         end,
     },
-    { "saadparwaiz1/cmp_luasnip",    after = "LuaSnip" },
-    { "hrsh7th/cmp-nvim-lua",        after = "cmp_luasnip" },
-    { "hrsh7th/cmp-nvim-lsp",        after = "cmp-nvim-lua" },
-    { "hrsh7th/cmp-buffer",          after = "cmp-nvim-lsp" },
-    { "hrsh7th/cmp-path",            after = "cmp-buffer" },
+    { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+    { "hrsh7th/cmp-nvim-lua",     after = "cmp_luasnip" },
+    { "hrsh7th/cmp-nvim-lsp",     after = "cmp-nvim-lua" },
+    { "hrsh7th/cmp-buffer",       after = "cmp-nvim-lsp" },
+    { "hrsh7th/cmp-path",         after = "cmp-buffer" },
     { "onsails/lspkind.nvim" },
     {
         "windwp/nvim-autopairs",
