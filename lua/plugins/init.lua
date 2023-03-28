@@ -38,10 +38,6 @@ local plugins = {
     },
     { "kyazdani42/nvim-web-devicons" },
     {
-        "felipec/vim-sanegx",
-        event = { "BufRead", "BufWinEnter", "BufNewFile" },
-    },
-    {
         "folke/which-key.nvim",
         config = function()
             require('plugins.whichkey')
