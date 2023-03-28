@@ -5,7 +5,7 @@ end
 
 todo_comments.setup({
     highlight = {
-        multiline = false,
-        comments_only = false
+        -- multiline = false,
+        -- comments_only = false
     }
 })
