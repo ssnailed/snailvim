@@ -17,7 +17,7 @@ M.list = {
     {
         "BufWritePost",
         {
-            pattern = { "bm-files", "bm-dirs" },
+            pattern = { "*/bookmarks/files", "*/bookmarks/dirs" },
             command = "!shortcuts"
         }
     },
