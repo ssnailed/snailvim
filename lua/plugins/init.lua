@@ -9,12 +9,14 @@ local plugins = {
     { "nvim-lua/plenary.nvim" },
     { "lewis6991/impatient.nvim" },
     { "brenoprata10/nvim-highlight-colors",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         config = function()
             require('plugins.highlight-colors')
         end,
     },
     {
         "lervag/vimtex",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         setup = function()
             vim.g.vimtex_view_method = "zathura"
             vim.g.tex_flavor = "latex"
@@ -28,12 +30,14 @@ local plugins = {
     },
     {
         "kylechui/nvim-surround",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         config = function()
             require('plugins.nvim-surround')
         end
     },
     {
         "fladson/vim-kitty",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         ft = "kitty"
     },
     { "kyazdani42/nvim-web-devicons" },
@@ -112,6 +116,7 @@ local plugins = {
     },
     {
         "lewis6991/gitsigns.nvim",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         ft = "gitcommit",
         setup = function()
             vim.api.nvim_create_autocmd({ "BufRead" }, {
@@ -152,6 +157,7 @@ local plugins = {
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         config = function()
             require('plugins.null-ls')
         end,
@@ -174,6 +180,7 @@ local plugins = {
     },
     {
         "hrsh7th/nvim-cmp",
+        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         config = function()
             require('plugins.cmp')
         end,

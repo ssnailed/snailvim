@@ -8,8 +8,8 @@ if not lspconfig_status_ok then
     return
 end
 
-local on_attach = function(client, bufnr)
-end
+-- local on_attach = function(client, bufnr)
+-- end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem = {
@@ -31,7 +31,7 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 local opts = {
-    on_attach = on_attach,
+    -- on_attach = on_attach,
     capabilities = capabilities
 }
 
@@ -46,7 +46,7 @@ mason_lspconfig.setup_handlers({
     end,
     ["intelephense"] = function()
         opts = {
-            on_attach = on_attach,
+            -- on_attach = on_attach,
             capabilities = capabilities,
             init_options = {
                 storagePath = vim.fn.expand "$XDG_CACHE_HOME" .. "/intelephense",
@@ -64,7 +64,7 @@ mason_lspconfig.setup_handlers({
     end,
     ["lua_ls"] = function()
         opts = {
-            on_attach = on_attach,
+            -- on_attach = on_attach,
             capabilities = capabilities,
             settings = {
                 Lua = {
