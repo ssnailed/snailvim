@@ -16,7 +16,6 @@ local plugins = {
     },
     {
         "lervag/vimtex",
-        event = { "BufRead", "BufWinEnter", "BufNewFile" },
         setup = function()
             vim.g.vimtex_view_method = "zathura"
             vim.g.tex_flavor = "latex"
@@ -24,9 +23,9 @@ local plugins = {
             vim.o.conceallevel = 1
             vim.g.tex_conceal = 'abdmg'
         end,
-        config = function()
-            require('config.keymaps').map("vimtex")
-        end,
+        -- config = function()
+        --     require('config.keymaps').map("vimtex")
+        -- end,
     },
     {
         "kylechui/nvim-surround",

@@ -47,7 +47,7 @@ end
 
 local function sub_capture(index, first, last)
     return f(function(_, snip, user_arg1) return snip.captures[user_arg1]:sub(first, last) end, nil,
-    { user_args = { index } })
+        { user_args = { index } })
 end
 
 local function in_comment()
@@ -65,11 +65,11 @@ end
 
 return {
 }, {
-    s({ trig = "^beg", regTrig = true, wordTrig = false, name = "begin{} / end{}" }, fmt([[
-        \begin{{{}}}
-            {}
-        \end{{{}}}
-    ]], { i(1), i(0), reference(1) })),
+    s({ trig = "^(%s*)beg", regTrig = true, wordTrig = false, name = "begin{} / end{}" }, fmt([[
+    {}\begin{{{}}}
+    {}    {}
+    {}\end{{{}}}
+    ]], { capture(1), i(1), capture(1), i(0), capture(1), reference(1) })),
     s({ trig = "mk", name = "Inline Math" }, fmt([[
         ${}${}{}
     ]], { i(1), f(cond_space, 2), i(2) })),
