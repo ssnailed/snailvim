@@ -1,7 +1,5 @@
 local M = { "nvim-lualine/lualine.nvim" }
 
-M.event = { "BufReadPre", "BufNewFile" }
-
 M.opts = function()
     local colors = require('tokyonight.colors').setup({ transform = true })
     local icons = require('config.icons')
@@ -121,8 +119,11 @@ M.opts = function()
     ins_left {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
-        symbols = { error = icons.diagnostics.BoldError .. ' ', warn = icons.diagnostics.BoldWarning .. ' ',
-            info = icons.diagnostics.BoldInformation },
+        symbols = {
+            error = icons.diagnostics.BoldError .. ' ',
+            warn = icons.diagnostics.BoldWarning .. ' ',
+            info = icons.diagnostics.BoldInformation
+        },
         diagnostics_color = {
             color_error = { fg = colors.red },
             color_warn = { fg = colors.yellow },

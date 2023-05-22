@@ -51,10 +51,10 @@ local opts = {
     ensure_installed = { "lua_ls" },
     handlers = {
         function(server_name)
-            require("lspconfig")[server_name].setup()
+            require("lspconfig")[server_name].setup({})
         end,
-        intelephense = function()
-            local opts = {
+        ["intelephense"] = function()
+            local intelephense_opts = {
                 capabilities = capabilities,
                 init_options = {
                     storagePath = vim.fn.expand("$XDG_CACHE_HOME") .. "/intelephense",
@@ -68,10 +68,10 @@ local opts = {
                     },
                 },
             }
-            require("lspconfig")["intelephense"].setup(opts)
+            require("lspconfig")["intelephense"].setup(intelephense_opts)
         end,
-        lua_ls = function()
-            local opts = {
+        ["lua_ls"] = function()
+            local lua_opts = {
                 capabilities = capabilities,
                 settings = {
                     Lua = {
@@ -92,7 +92,7 @@ local opts = {
                     },
                 },
             }
-            require("lspconfig")["lua_ls"].setup(opts)
+            require("lspconfig")["lua_ls"].setup(lua_opts)
         end,
     },
 }

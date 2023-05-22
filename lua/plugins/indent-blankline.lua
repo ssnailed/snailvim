@@ -3,7 +3,8 @@ local M = { "lukas-reineke/indent-blankline.nvim" }
 M.event = { "BufReadPre", "BufNewFile" }
 
 M.keys = {
-    { "<c-c>",
+    {
+        "<c-c>",
         function()
             local ok, start = require("indent_blankline.utils").get_current_context(
                 vim.g.indent_blankline_context_patterns,

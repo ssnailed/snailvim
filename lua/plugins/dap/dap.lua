@@ -106,7 +106,7 @@ M.config = function()
         d = {
             name = "+debug",
         },
-    }, { prefix = "<leader>"})
+    }, { prefix = "<leader>" })
 end
 
 return M

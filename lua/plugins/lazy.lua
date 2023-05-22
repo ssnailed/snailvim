@@ -32,11 +32,11 @@ M.opts = {
 }
 
 M.keys = {
-    { "<leader>pu", require("lazy").check,                   desc = "Check for updates" },
-    { "<leader>pc", require("lazy").clear,                   desc = "Clear finished tasks" },
-    { "<leader>pd", require("lazy").debug,                   desc = "Show debug information" },
-    { "<leader>pp", require("lazy").profile,                 desc = "Show profiling information" },
-    { "<leader>ps", require("lazy").sync,                    desc = "Install, clean and update plugins" },
+    { "<leader>pu", require("lazy").check,   desc = "Check for updates" },
+    { "<leader>pc", require("lazy").clear,   desc = "Clear finished tasks" },
+    { "<leader>pd", require("lazy").debug,   desc = "Show debug information" },
+    { "<leader>pp", require("lazy").profile, desc = "Show profiling information" },
+    { "<leader>ps", require("lazy").sync,    desc = "Install, clean and update plugins" },
 }
 
 

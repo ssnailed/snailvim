@@ -5,8 +5,8 @@ M.event = { "BufRead", "BufNewFile" }
 M.keys = {
     { "<C-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Switch to next buffer" },
     { "<C-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Switch to previous buffer" },
-    { "<A-l>", "<cmd>BufferLineMoveNext<CR>", desc = "Move buffer to next" },
-    { "<A-h>", "<cmd>BufferLineMovePrev<CR>", desc = "Move buffer to previous" },
+    { "<A-l>", "<cmd>BufferLineMoveNext<CR>",  desc = "Move buffer to next" },
+    { "<A-h>", "<cmd>BufferLineMovePrev<CR>",  desc = "Move buffer to previous" },
 }
 
 M.opts = function()
@@ -62,12 +62,12 @@ M.opts = function()
             },
         },
         options = {
-            mode = "buffers", -- set to "tabs" to only show tabpages instead
-            numbers = "none", -- can be "none" | "ordinal" | "buffer_id" | "both" | function
-            close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+            mode = "buffers",                        -- set to "tabs" to only show tabpages instead
+            numbers = "none",                        -- can be "none" | "ordinal" | "buffer_id" | "both" | function
+            close_command = "bdelete! %d",           -- can be a string | function, see "Mouse actions"
             right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"
-            left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-            middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+            left_mouse_command = "buffer %d",        -- can be a string | function, see "Mouse actions"
+            middle_mouse_command = nil,              -- can be a string | function, see "Mouse actions"
             indicator = {
                 -- icon = icons.ui.DoubleChevronRight, -- this should be omitted if indicator style is not 'icon'
                 style = "none", -- can also be 'underline'|'none',
@@ -89,7 +89,7 @@ M.opts = function()
             end,
             max_name_length = 18,
             max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-            truncate_names = true, -- whether or not tab names should be truncated
+            truncate_names = true,  -- whether or not tab names should be truncated
             tab_size = 18,
             diagnostics = "nvim_lsp",
             diagnostics_update_in_insert = false,
@@ -127,7 +127,7 @@ M.opts = function()
                     padding = 1,
                 },
             },
-            color_icons = true, -- whether or not to add the filetype icon highlights
+            color_icons = true,       -- whether or not to add the filetype icon highlights
             show_buffer_icons = true, -- disable filetype icons for buffers
             show_buffer_close_icons = false,
             show_close_icon = false,
