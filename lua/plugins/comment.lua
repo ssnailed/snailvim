@@ -1,11 +1,17 @@
-local status_ok, comment = pcall(require, "Comment")
-if not status_ok then
-    return
-end
+local M = { "numToStr/Comment.nvim" }
 
-comment.setup({
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.keys = {
+    { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment toggle current line", },
+    { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment toggle linewise", mode = { "v" }, },
+}
+
+M.opts = {
     mappings = {
         basic = false,
         extra = false
     }
-})
+}
+
+return M

@@ -1,9 +1,10 @@
-local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
-    return
-end
+local M = { "nvim-treesitter/nvim-treesitter" }
 
-configs.setup({
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.build = ":TSUpdate"
+
+M.opts = {
     ensure_installed = { "lua", "bash", "c" },
     auto_install = true,
     autopairs = {
@@ -13,4 +14,10 @@ configs.setup({
         enable = true,
         enable_autocmd = false,
     },
-})
+}
+
+M.keys = {
+    { "<leader>T", "<cmd>TSConfigInfo<cr>", desc = "Treesitter Info" }
+}
+
+return M

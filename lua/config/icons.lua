@@ -1,6 +1,4 @@
-local M = {}
-
-M.list =  {
+return {
     kind = {
         Array = "",
         Boolean = "蘒",
@@ -83,6 +81,7 @@ M.list =  {
         Circle = "",
         Close = "",
         CloudDownload = "",
+        CMD = "",
         Code = "",
         Comment = "",
         Dashboard = "",
@@ -105,6 +104,8 @@ M.list =  {
         Forward = "",
         Gear = "",
         History = "",
+        Import = "",
+        Keyboard = "",
         Lightbulb = "",
         LineLeft = "▏",
         LineMiddle = "│",
@@ -120,6 +121,7 @@ M.list =  {
         Search = "",
         SignIn = "",
         SignOut = "",
+        Sleep = "󰒲",
         Tab = "",
         Table = "",
         Target = "",
@@ -155,20 +157,6 @@ M.list =  {
         Smiley = "ﲃ",
         Package = "",
         CircuitBoard = "",
+        Vim = "",
     },
 }
-M.setup = function()
-    local icons = M.list.diagnostics
-    local signs = {
-      DiagnosticSignError = icons.BoldError,
-      DiagnosticSignWarn = icons.BoldWarning,
-      DiagnosticSignHint = icons.BoldHint,
-      DiagnosticSignInfo = icons.BoldInformation
-    }
-    for type, icon in pairs(signs) do
-      local hl = type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-end
-
-return M

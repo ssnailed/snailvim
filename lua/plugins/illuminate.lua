@@ -1,11 +1,8 @@
-local status_ok, illuminate = pcall(require, "illuminate")
-if not status_ok then
-    return
-end
+local M = { "RRethy/vim-illuminate" }
 
-vim.g.Illuminate_ftblacklist = { 'alpha', 'NvimTree' }
+M.event = { "BufReadPre", "BufNewFile" }
 
-illuminate.configure {
+local opts = {
     providers = {
         "lsp",
         "treesitter",
@@ -34,3 +31,13 @@ illuminate.configure {
     providers_regex_syntax_allowlist = {},
     under_cursor = true,
 }
+
+M.init = function()
+    vim.g.Illuminate_ftblacklist = { 'alpha', 'NvimTree' }
+end
+
+M.config = function()
+    require('illuminate').configure(opts)
+end
+
+return M

@@ -1,8 +1,9 @@
-local status_ok, highlight = pcall(require, "nvim-highlight-colors")
-if not status_ok then
-    return
-end
+local M = { "brenoprata10/nvim-highlight-colors" }
 
-highlight.setup({
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.opts = {
     render = 'background'
-})
+}
+
+return M

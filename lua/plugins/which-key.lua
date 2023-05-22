@@ -1,11 +1,15 @@
-local status_ok, whichkey = pcall(require, 'which-key')
-if not status_ok then
-    return
+local M = { "folke/which-key.nvim" }
+
+local icons = require('config.icons')
+
+M.lazy = false
+
+M.init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
 end
 
-local icons = require('config.icons').list
-
-whichkey.setup({
+local opts = {
     plugins = {
         marks = false,
         registers = false,
@@ -33,10 +37,8 @@ whichkey.setup({
         scroll_up = "<c-u>",
     },
     window = {
-        border = "single",
+        border = "none",
         position = "bottom",
-        margin = { 1, 0, 1, 0 },
-        padding = { 2, 2, 2, 2 },
         winblend = 0,
     },
     layout = {
@@ -51,4 +53,18 @@ whichkey.setup({
         i = { "j", "k" },
         v = { "j", "k", "y" },
     },
-})
+    defaults = {
+        ["<leader>u"] = { name = "Utility" },
+        ["<leader>p"] = { name = "Plugins" },
+    }
+}
+
+M.keys = {
+    { "<leader>w",  "<cmd>w!<CR>",                           desc = "Save" },
+    { "<leader>q",  require('funcs').buf_kill,               desc = "Close" },
+    { "<leader>h",  "<cmd>nohlsearch<CR>",                   desc = "Clear Highlights" },
+    { "<leader>n",  "<cmd>ene<CR>",                          desc = "New File" },
+    { "<leader>uc", "<cmd>w!<CR><cmd>!compiler \"%:p\"<CR>", desc = "Compile" },
+}
+
+return M

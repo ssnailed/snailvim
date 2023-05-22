@@ -1,12 +1,17 @@
-local status_ok, tokyonight = pcall(require, 'tokyonight')
-if not status_ok then
-    return
-end
+local M = { "folke/tokyonight.nvim" }
 
-tokyonight.setup({
+M.priority = 1000
+
+local opts = {
     style = "night",
     transparent = true,
     terminal_colors = true,
     dim_inactive = true,
-})
-vim.cmd [[colorscheme tokyonight]]
+}
+
+M.config = function()
+    require('tokyonight').setup(opts)
+    vim.cmd [[colorscheme tokyonight]]
+end
+
+return M

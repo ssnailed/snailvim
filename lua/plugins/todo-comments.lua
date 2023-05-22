@@ -1,11 +1,5 @@
-local status_ok, todo_comments = pcall(require, 'todo-comments')
-if not status_ok then
-    return
-end
+local M = { "folke/todo-comments.nvim" }
 
-todo_comments.setup({
-    highlight = {
-        -- multiline = false,
-        -- comments_only = false
-    }
-})
+M.event = { "BufReadPre", "BufNewFile" }
+
+return M

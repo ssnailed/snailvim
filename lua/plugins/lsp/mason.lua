@@ -1,11 +1,10 @@
-local status_ok, mason = pcall(require, 'mason')
-if not status_ok then
-    return
-end
+local M = { "williamboman/mason.nvim" }
 
-local icons = require('config.icons').list
+local icons = require('config.icons')
 
-mason.setup({
+M.keys = { { "<leader>lI", "<cmd>Mason<cr>", desc = "Mason" } }
+
+M.opts = {
     ui = {
         border = "none",
         icons = {
@@ -16,4 +15,6 @@ mason.setup({
     },
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 4,
-})
+}
+
+return M

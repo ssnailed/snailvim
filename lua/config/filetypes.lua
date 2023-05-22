@@ -1,5 +1,4 @@
-local M = {}
-M.list = {
+local filetypes = {
     {
         extension = {
             yml = function(path, bufnr)
@@ -24,10 +23,6 @@ M.list = {
     }
 }
 
-M.setup = function()
-    for _, entry in pairs(M.list) do
-        vim.filetype.add(entry)
-    end
+for _, entry in pairs(filetypes) do
+	vim.filetype.add(entry)
 end
-
-return M

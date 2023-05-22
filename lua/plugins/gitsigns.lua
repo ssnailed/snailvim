@@ -1,9 +1,22 @@
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then
-    return
-end
+local M = { "lewis6991/gitsigns.nvim" }
 
-gitsigns.setup {
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.keys = {
+    { "<leader>gj", function() require("gitsigns").next_hunk() end, desc = "Next Hunk" },
+    { "<leader>gk", function() require("gitsigns").prev_hunk() end, desc = "Prev Hunk" },
+    { "<leader>gb", function() require("gitsigns").blame_line() end, desc = "Blame" },
+    { "<leader>gp", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
+    { "<leader>gr", function() require("gitsigns").reset_hunk() end, desc = "Reset Hunk" },
+    { "<leader>gR", function() require("gitsigns").reset_buffer() end, desc = "Reset Buffer" },
+    { "<leader>gs", function() require("gitsigns").stage_hunk() end, desc = "Stage Hunk" },
+    { "<leader>gu", function() require("gitsigns").undo_stage_hunk() end, desc = "Undo Stage Hunk" },
+    { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
+}
+
+M.ft = { "gitcommit" }
+
+local opts = {
     signs = {
         add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
         change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
@@ -34,3 +47,14 @@ gitsigns.setup {
         col = 1,
     },
 }
+
+M.config = function()
+    require('gitsigns').setup(opts)
+    require('which-key').register({
+        g = {
+            name = "Git",
+        },
+    }, { prefix = "<leader>" })
+end
+
+return M
