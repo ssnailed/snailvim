@@ -1,7 +1,7 @@
-local o = vim.opt
-local g = vim.g
+local o          = vim.opt
+local g          = vim.g
 
-g.mapleader = " "
+g.mapleader      = " "
 g.maplocalleader = "	"
 
 o.undodir        = vim.fn.stdpath "cache" .. "/undo"
@@ -27,7 +27,6 @@ o.scrolloff      = 8
 o.sidescrolloff  = 8
 o.undofile       = true
 o.title          = true
-o.titlestring    = " %t"
 o.termguicolors  = true
 o.timeoutlen     = 500
 o.foldmethod     = "expr"
