@@ -36,31 +36,6 @@ function M.format(opts)
     return vim.lsp.buf.format(opts)
 end
 
-function M.formatCWD()
-    local path = vim.fn.getcwd()
-    local dirs = require('config.dirs')
-    local homeDir = os.getenv("HOME")
-    for abbreviation, dir in pairs(dirs) do
-        if dir ~= homeDir then
-            path = path:gsub("^" .. dir, "~" .. abbreviation)
-        end
-    end
-    path = path:gsub("^" .. homeDir, "~")
-    local parents = {}
-    for parent in path:gmatch("[^/]+") do
-        table.insert(parents, parent)
-    end
-    if #parents <= 3 then
-        path = table.concat(parents, "/")
-        if not path:match('^~.*') then
-            path = "/" .. path
-        end
-    else
-        path = table.concat(parents, "/", #parents - 2, #parents)
-    end
-    return path
-end
-
 -- Modified version of a function stolen from LunarVim
 function M.buf_kill(kill_command, bufnr, force)
     kill_command = kill_command or "bd"

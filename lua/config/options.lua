@@ -28,7 +28,6 @@ o.sidescrolloff  = 8
 o.undofile       = true
 o.title          = true
 
-o.titlestring    = os.getenv("TERMINAL") .. " [" .. require('funcs').formatCWD() .. "]  %t"
 o.termguicolors  = true
 o.timeoutlen     = 500
 o.foldmethod     = "expr"
