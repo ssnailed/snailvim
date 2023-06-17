@@ -1,4 +1,5 @@
  TODO: set nvim-surround, nvim-cmp, vimtex keybinds separately from plugin setup
  TODO: continue work on latex snippets
  TODO: autodetect tabwidth
+ TODO: Set up telescope and ripgrep for vimwiki
  FIX: Closing keybind needs to account for the vimtex error window
