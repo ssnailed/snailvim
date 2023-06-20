@@ -12,7 +12,7 @@ M.dependencies = {
 
 M.event = { "BufReadPre", "BufNewFile" }
 
-M.opts = function()
+local opts = function()
     local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -109,10 +109,10 @@ M.opts = function()
     }
 end
 
-M.config = function(opts)
+M.config = function()
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
-    cmp.setup(opts)
+    cmp.setup(opts())
     cmp.event:on(
         'confirm_done',
         cmp_autopairs.on_confirm_done()
