@@ -1,5 +1,6 @@
-local o          = vim.opt
 local g          = vim.g
+local o          = vim.opt
+local d          = vim.diagnostic.config
 
 g.mapleader      = " "
 g.maplocalleader = "	"
@@ -39,3 +40,5 @@ o.laststatus     = 3
 o.modeline       = true
 o.modelines      = 3
 o.listchars      = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
+
+d({ virtual_text = false })
