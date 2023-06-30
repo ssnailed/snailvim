@@ -16,7 +16,7 @@ local autocmds = {
     {
         "BufWritePost",
         {
-            pattern = { "*/bookmarks/files", "*/bookmarks/dirs" },
+            pattern = { "*/bookmarks/files", "*/bookmarks/directories" },
             command = "!shortcuts"
         }
     },
