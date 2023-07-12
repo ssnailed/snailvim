@@ -1,5 +1,4 @@
 local M = { "nvim-lualine/lualine.nvim" }
-
 M.opts = function()
     local colors = require('tokyonight.colors').setup({ transform = true })
     local icons = require('config.icons')
@@ -16,6 +15,18 @@ M.opts = function()
             return gitdir and #gitdir > 0 and #gitdir < #filepath
         end,
     }
+
+    local function search_result()
+        if vim.v.hlsearch == 0 then
+            return ''
+        end
+        local last_search = vim.fn.getreg('/')
+        if not last_search or last_search == '' then
+            return ''
+        end
+        local searchcount = vim.fn.searchcount { maxcount = 9999 }
+        return last_search .. '(' .. searchcount.current .. '/' .. searchcount.total .. ')'
+    end
 
     local config = {
         options = {
@@ -94,29 +105,76 @@ M.opts = function()
     }
 
     ins_left {
+        'filename',
+        cond = conditions.buffer_not_empty,
+        color = { fg = colors.magenta, gui = 'bold' },
+    }
+
+    ins_left {
+        'fileformat',
+        fmt = string.upper,
+        icons_enabled = false,
+        color = { fg = colors.green },
+    }
+
+    ins_left {
+        'o:encoding',
+        fmt = string.upper,
+        cond = conditions.hide_in_width,
+        color = { fg = colors.green },
+    }
+
+    ins_left {
+        'filesize',
+        fmt = string.upper,
+        icons_enabled = false,
+        color = { fg = colors.green },
+    }
+
+    ins_left {
+        '%04l:%04c',
+    }
+
+    -- NOTE: My beloved :(
+
+    -- ins_left {
+    --     function()
+    --         local current_line = vim.fn.line "."
+    --         local total_lines = vim.fn.line "$"
+    --         local chars = icons.progress
+    --         local line_ratio = current_line / total_lines
+    --         local index = math.ceil(line_ratio * #chars)
+    --         return chars[index]
+    --     end,
+    --     color = { fg = colors.yellow }
+    -- }
+
+    ins_right {
+        search_result,
+        color = { fg = colors.white },
+        padding = { left = 1 },
+    }
+
+    ins_right {
         function()
-            local msg = 'None Active'
+            local msg = ''
             local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
             local clients = vim.lsp.get_active_clients()
             if next(clients) == nil then
-                return msg
+                return 'No LSP'
             end
             for _, client in ipairs(clients) do
                 local filetypes = client.config.filetypes
                 if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                    if client.name ~= "null-ls" then
-                        return client.name
-                    end
-                    msg = client.name
+                    msg = msg .. ", " .. client.name
                 end
             end
-            return msg
+            return msg:sub(3)
         end,
-        icon = ' LSP:',
-        color = { fg = colors.white },
+        color = { fg = colors.blue, gui = 'bold' },
     }
 
-    ins_left {
+    ins_right {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
         symbols = {
@@ -131,62 +189,10 @@ M.opts = function()
         },
     }
 
-    ins_left {
-        function()
-            return '%='
-        end,
-    }
-
-    ins_left {
-        'filename',
-        color = { fg = colors.magenta, gui = 'bold' },
-    }
-
-    ins_left {
-        function()
-            local current_line = vim.fn.line "."
-            local total_lines = vim.fn.line "$"
-            local chars = icons.progress
-            local line_ratio = current_line / total_lines
-            local index = math.ceil(line_ratio * #chars)
-            return chars[index]
-        end,
-        color = { fg = colors.yellow }
-    }
-
-    ins_left {
-        '%04l:%04c',
-    }
-
     ins_right {
-        'o:encoding',
-        fmt = string.upper,
-        cond = conditions.hide_in_width,
+        'filetype',
         color = { fg = colors.green, gui = 'bold' },
-    }
-
-    ins_right {
-        'fileformat',
-        fmt = string.upper,
-        icons_enabled = false,
-        color = { fg = colors.green, gui = 'bold' },
-    }
-
-    ins_right {
-        'branch',
-        icon = icons.git.Branch,
-        color = { fg = colors.violet, gui = 'bold' },
-    }
-
-    ins_right {
-        'diff',
-        symbols = { added = ' ', modified = '柳', removed = ' ' },
-        diff_color = {
-            added = { fg = colors.green },
-            modified = { fg = colors.orange },
-            removed = { fg = colors.red },
-        },
-        cond = conditions.hide_in_width,
+        padding = { left = 1 },
     }
 
     ins_right {
@@ -198,6 +204,7 @@ M.opts = function()
         end,
         padding = { left = 1 },
     }
+
     return config
 end
 
